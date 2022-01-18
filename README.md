@@ -1,6 +1,6 @@
 [TOC]
 
-![](./images/openreach picture.jpg)
+![](images/openreach picture.jpg)
 
 # Decision Science Case Study
 
@@ -71,7 +71,7 @@ The delivery of this project has been split into 2 phases.
   **Note: This is not captured in detail in the solution architecture below.**
 - ****This involves designing an improved model which will the product will be built on.
 
-![](./architecture/images/Project Shrinkray.jpg)
+![](architecture/images/Project Shrinkray.jpg)
 
 > Assumptions for cases with very little data to train with.
 >
