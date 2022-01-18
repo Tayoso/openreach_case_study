@@ -1,6 +1,6 @@
 [TOC]
 
-![](images/openreach picture.jpg)
+![](images/openreach_picture.jpg)
 
 # Decision Science Case Study
 
@@ -71,7 +71,7 @@ The delivery of this project has been split into 2 phases.
   **Note: This is not captured in detail in the solution architecture below.**
 - ****This involves designing an improved model which will the product will be built on.
 
-![](architecture/images/Project Shrinkray.jpg)
+![](architecture/images/project_shrinkray.jpg)
 
 > Assumptions for cases with very little data to train with.
 >
@@ -144,7 +144,7 @@ By carrying out a feasibility study (part of the business understanding process)
 
 #### How will you keep stakeholders informed?
 
-Weekly Sprints involving a technical/non-technical, lowlevel/high level presentation (dependent on the stakeholders present at the sprint) to showcase findings.
+Weekly Sprints involving a technical/non-technical, low-level/high level presentation (dependent on the stakeholders present at the sprint) to showcase findings.
 
 Internally, the technical team will have Jira project monitoring board, Agile boards to monitor project progress.
 
