@@ -4,8 +4,6 @@
 
 # Decision Science Case Study
 
-[[_TOC_]]
-
 ## Current Scenario
 
 - Manual predictions using Excel
@@ -14,7 +12,7 @@
 
 - Delivery date is only set after planning stage is completed
 
-- The core objective is to provide a more efficient way of **predicting** and **estimating** a more accurate delivery date for Openreach's customers.
+- The objective is to provide a more efficient way of **predicting** and **estimating** a more accurate delivery date for Openreach's customers.
 
 - **Predicting** refers to minimising human effort and **estimating** refers to precision with approximating delivery dates.
 
@@ -24,7 +22,7 @@
 
 **Working project name: Project X**
 
-Automating this predictions using machine learning.
+Automating these predictions using machine learning.
 
 1. Multivariate timeseries regression model – We want to capture trends/patterns in the data which occur over different time periods. Algorithms include: ARMA, Multi-Prophet
 
@@ -35,9 +33,9 @@ Automating this predictions using machine learning.
 
 ## Measuring the effectiveness of the solution
 
-- Using evaluation metric;
+- Using evaluation metrices;
   - Root Mean Squared Errors which give relatively high weights to large errors. Optimising the RMSE means we are aiming to minimise the difference between the predicted dates and actual delivery dates such that the closer we are to the actual delivery date, the better. This way, we can tell a model that predicts delivery dates that are much closer to the actual delivery date. This is the preferred of the 2 measures.
-  - Mean Absolute Error: Every error has the same weight. Using this metric, there will be instances where the predicted delivery date is far off the actual delivery date and because MAE weights errors equally this will mean a model with delivery dates that are farther away from the actual delivery dates.
+  - Mean Absolute Error: Here, every error has the same weight. Using this metric, there will be instances where the predicted delivery date is far off the actual delivery date and because MAE weights errors equally, this will mean a model with some predicted delivery dates that are far away from the actual delivery dates.
 - Out of sample Cross Validation; train with 2017-2020 data, test with 2021 data
 
 
@@ -62,20 +60,49 @@ The delivery of this project has been split into 2 phases.
 
 **Phase 1**
 
-- Delivery of MVP, a prototype solution.
+- Delivery of MVP, a prototype solution. This is an evaluated machine learning model which will automate the manual predictions made in excel.
 - This involves framing the problem, identifying the stakeholders and designing a baseline model that can deliver the minimum viable product. 
 
 **Phase 2**
 
-- Delivery of product. 
-  **Note: This is not captured in detail in the solution architecture below.**
-- ****This involves designing an improved model which will the product will be built on.
+- Delivery of product, a microservice framework with multiple user interfaces for each region.
+- ****This involves deploying and serving an improved model which the product will be built on.
 
-![](architecture/images/project_shrinkray.jpg)
+![](architecture/images/mle_01.png)
 
-> Assumptions for cases with very little data to train with.
->
-> These assumptions will go through hypothesis tests to ascertain if the assumptions are valid.
+> Note: We will make assumptions for cases with very little data to train with. These assumptions will go through hypothesis tests to ascertain if the assumptions are valid.
+
+
+
+#### Microservice architecture
+
+It is important to think of our products as customer-driven not data-driven because we are building products that are useful to the customers (focus is on customers) and not products that we can build from the data. A microservice-based framework is different from a monolithic architecture. One key merit is microservices are isolated but part of a bigger service, if one microservice breaks down it does not affect the other service. 
+
+With a REST APIs, the users of this product from different regions of Openreach can use this service with zero conflict. 
+
+![Microservice based framework, Phase 2](architecture/images/microservices.png)
+
+
+
+### OKRs
+
+During project planning, it is crucial to set clear goals, communicate regularly with the stakeholders on the project and ensure that all stakeholders are aligned.
+
+> “A goal properly set is halfway reached.” — Zig Ziglar
+
+
+
+The core objective for this project is improving certainty for our customers.
+
+How would we achieve this? By creating a more efficient way of predicting and estimating a more accurate delivery date for Openreach's customers.
+
+#### **Measurable key results**
+
+\- Build a model with an RMSE lower than that of the human predictions in excel.
+
+\- Create multiple user interface or a single user interface for the 4 different regions of Openreach.
+
+\- Deploy an authenticated microservice based framework which can predict and export results of the prediction.
 
 
 
@@ -84,30 +111,17 @@ The delivery of this project has been split into 2 phases.
 The value framework/key performance indicators are key towards monitoring the progress of the product development. Transparency and Integrity are core to the foundation of the core product value framework. Efficiency and Accuracy ***are add-ons which ensure that the tool which sits upon this robust platform is capable of delivering accurate and efficient value.*** 
 
 - Transparency
-
   - Transparency and accountability are products of good data governance. Does the product allow domain agnostic operability?
-
 - Integrity
-
-  - Robust enough to meet the requirements of all the teams relying on this product?
-  - Can this tool be relied upon short term and long term?
+  - Robust enough to meet the requirements of all the teams relying on this product without failing?
+  - Can this tool be relied upon in the short term and long term?
   - How will this product be maintained?
-
 - Efficient
-
   - Does it deliver value?
-
 - Accuracy
-
   - Are the predicted dates reliable and not too far from the expected?
-  - Does it minimize errors compared to manual predictions?
+  - Does it minimise errors compared to manual predictions?
 
-  ​
-
-
-The core value from this project is improving certainty for our customers.
-
-How would we achieve this? By creating a more efficient way of estimating delivery completion date.
 
 
 
@@ -115,38 +129,47 @@ How would we achieve this? By creating a more efficient way of estimating delive
 
 #### How will you use your team?
 
-Assuming resource is not constrained, this will be a 12 weeks project for Phase 1 involving weekly sprints.
+Assuming resource is not a constraint, there will be a 12 weeks delivery timeframe for Phase 1 and 12 weeks for Phase 2 involving weekly sprints. Its safer to make concessions when planning delivery timelines in data science projects. If the project finishes earlier, that's a bonus for the team and the business.
 
-- 2-3 weeks to generate the project proposal involving the Project Manager and Senior Data Scientist (myself). During this period, we will clearly frame the problem.
-  - Identify and discuss with the stakeholders within the project. i.e.,  Junior Data Scientists, product team, field engineers, a representative of the 4 different regions to align.
-  - During this period,the data scientists, 1 part time and full time will research on how the work can be done and also how we can create a prototype solution (if this meets the business needs)
-  - Project Kickoff workshop
+**Phase 1**
+
+- 2-3 weeks to generate the project proposal involving the Project Manager and Senior Data Scientist (myself). During this period, we will clearly frame the problem and define the goals.
+  - Identify and discuss with the stakeholders within the project. i.e.,  Junior Data Scientists, product team, field engineers, a representative of the 4 different regions to align to collect user stories.
+  - During this period,the data scientists, 1 part time and full time will research on how the work can be done and also how we can create a prototype solution.
+  - Project Kickoff workshop.
 - 2-4 weeks for data understanding, cleaning, exploration of data from all 4 different regions and establishing how to align them all.
-- 2-3 weeks for modelling and model evaluation
+- 2-3 weeks for feature selection & engineering, modeling and model evaluation
 - 1 week for QA, bug-fixing
 - 1 week to prepare to present to key stakeholders
 
 
-*With weekly sprints to update stakeholders, to be presented by Junior Data Scientist and Senior Data Scientist.
+*with weekly sprints to update stakeholders, to be presented by Junior Data Scientist and Senior Data Scientist.
 
+**Phase 2**
 
+- 2 weeks for model deployment; looking at the pipeline and frequency of running the model
+- 6 weeks for model serving a frontend UI on GCP app engine using a rest endpoint
+- 2 weeks for model monitoring; How do you know that a feature you overlooked is doing better? The model pipeline will inform you if you need to retrain. Reproducibility and scalability so as to reproduce quickly and reduce latency.
+- Model maintenance is an ongoing process and will take up to 2 weeks to set up notifications that will prompt actions to be taken where new features are available to retrain the model. Here, we answer questions pertaining to the longevity of the model.
 
 #### How will you prioritise features?
 
-By carrying out a feasibility study (part of the business understanding process) to confirm the course of action. This will further clarify the minimum viable product, the KPIs, milestones.
+Feature prioritisation starts with a shared vision and with collaborative leadership. Features will be collected as epics. These epics are a collection of user stories from end users who would end up using the product. With the help of a project/business analyst/product owner, we can collect requirements which will be passed onto the development team. The product features will be agreed upon by ranking the features using certain metrices to avoid feature overload.
 
-1. Prototype build - Get a baseline model that estimates delivery date completion for a sample dataset. e.g. East Sussex county
+1. **Feasibility:** How technically possible is the feature given the resources and tools you currently have? Talk to your technical team members—back-end engineers, UI designers, and front-end developers—to understand what *can* be done (vs. what’s impossible or highly improbable).
+2. **Desirability:** Do your customers actually want it? Use every available tool to understand whether this is something your users desire. Essentially, differentiate between basic features, performance features and attractive features. That means talking to researchers, UX designers, marketers, and support, as well as going through any users tests and validation you may have already completed.
+3. **Viability:** How does this feature relate to or support the project objectives? Talk to relevant executives and other product managers to understand how this feature works in a bigger ecosystem—both your own (other features, strategies, and goals) and the industry as a whole (regulations, legal issues, financials).
 
-2. Productionise a refined model which will serve all domains and all counties within Openreach's point to point fibre network.
+*Note: Research is key in feature prioritisation.
 
-   ​
+
 
 
 #### How will you keep stakeholders informed?
 
-Weekly Sprints involving a technical/non-technical, low-level/high level presentation (dependent on the stakeholders present at the sprint) to showcase findings.
-
-Internally, the technical team will have Jira project monitoring board, Agile boards to monitor project progress.
+- Weekly Sprints involving a technical/non-technical, low-level/high level presentations (dependent on the stakeholders present at the sprint) to showcase findings.
+- Emails, Confluence for sharing documents with stakeholders and collaborative purposes.
+- Internally, the technical team will have Jira project monitoring board, Agile boards, RAG sheets to monitor project progress.
 
 
 
@@ -156,16 +179,7 @@ Internally, the technical team will have Jira project monitoring board, Agile bo
 
 Covid data that helps us understand how covid might have affected delivery dates.
 
-### Tools
-
-- Excel
-
-- Git (GitHub Actions)
-
-- GCP
-
-
-### Project Management tools
+### Agile PM tools
 
 - GitHub Issues
 
@@ -173,6 +187,11 @@ Covid data that helps us understand how covid might have affected delivery dates
 
 - Jira
 
+### Tools
+
+- Excel
+- Git (GitHub Actions)
+- GCP
 
 ### Open Source Technologies
 
