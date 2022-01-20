@@ -2,6 +2,8 @@
 
 ![](images/openreach_picture.jpg)
 
+
+
 # Decision Science Case Study
 
 ## Current Scenario
@@ -24,7 +26,7 @@
 
 Automating these predictions using machine learning.
 
-1. Multivariate timeseries regression model – We want to capture trends/patterns in the data which occur over different time periods. Algorithms include: ARMA, Multi-Prophet
+1. Multivariate timeseries regression model
 
 2. Cross validated regression model
 
@@ -34,9 +36,8 @@ Automating these predictions using machine learning.
 ## Measuring the effectiveness of the solution
 
 - Using evaluation metrices;
-  - Root Mean Squared Errors which give relatively high weights to large errors. Optimising the RMSE means we are aiming to minimise the difference between the predicted dates and actual delivery dates such that the closer we are to the actual delivery date, the better. This way, we can tell a model that predicts delivery dates that are much closer to the actual delivery date. This is the preferred of the 2 measures.
-  - Mean Absolute Error: Here, every error has the same weight. Using this metric, there will be instances where the predicted delivery date is far off the actual delivery date and because MAE weights errors equally, this will mean a model with some predicted delivery dates that are far away from the actual delivery dates.
-- Out of sample Cross Validation; train with 2017-2020 data, test with 2021 data
+  - Root Mean Squared Error. This way, we can tell a model that predicts delivery dates for each customer that are much closer to the actual delivery date. This is the most important metric.
+  - Mean Absolute Error
 
 
 
@@ -60,15 +61,16 @@ The delivery of this project has been split into 2 phases.
 
 **Phase 1**
 
-- Delivery of MVP, a prototype solution. This is an evaluated machine learning model which will automate the manual predictions made in excel.
+- Delivery of MVP, a prototype solution. This solution is an evaluated machine learning model which will automate the manual predictions made in excel.
 - This involves framing the problem, identifying the stakeholders and designing a baseline model that can deliver the minimum viable product. 
+- Product feature collection via user stories and feature prioritisation.
 
 **Phase 2**
 
 - Delivery of product, a microservice framework with multiple user interfaces for each region.
-- ****This involves deploying and serving an improved model which the product will be built on.
+- Deploying and serving an improved model which the product will be built on.
 
-![](architecture/images/mle_01.png)
+![](architecture/images/mle_02.png)
 
 > Note: We will make assumptions for cases with very little data to train with. These assumptions will go through hypothesis tests to ascertain if the assumptions are valid.
 
@@ -90,37 +92,29 @@ During project planning, it is crucial to set clear goals, communicate regularly
 
 > “A goal properly set is halfway reached.” — Zig Ziglar
 
-
-
 The core objective for this project is improving certainty for our customers.
 
 How would we achieve this? By creating a more efficient way of predicting and estimating a more accurate delivery date for Openreach's customers.
 
 #### **Measurable key results**
 
-\- Build a model with an RMSE lower than that of the human predictions in excel.
+Due to the agile nature of the project, some of the KRs
 
-\- Create multiple user interface or a single user interface for the 4 different regions of Openreach.
-
-\- Deploy an authenticated microservice based framework which can predict and export results of the prediction.
+- Build a model with an RMSE lower than that of the human predictions in excel.
+- Create multiple user interface or a single user interface for the 4 different regions of Openreach.
+- Deploy an authenticated microservice based framework which can predict and export results of the prediction.
+- Collect basic requirements for product feature design.
 
 
 
 ### Value Framework
 
-The value framework/key performance indicators are key towards monitoring the progress of the product development. Transparency and Integrity are core to the foundation of the core product value framework. Efficiency and Accuracy ***are add-ons which ensure that the tool which sits upon this robust platform is capable of delivering accurate and efficient value.*** 
+The value framework/key performance indicators are key towards monitoring the progress of the product development. Transparency and Integrity are core to the foundation of the core product value framework. 
 
 - Transparency
-  - Transparency and accountability are products of good data governance. Does the product allow domain agnostic operability?
 - Integrity
-  - Robust enough to meet the requirements of all the teams relying on this product without failing?
-  - Can this tool be relied upon in the short term and long term?
-  - How will this product be maintained?
 - Efficient
-  - Does it deliver value?
 - Accuracy
-  - Are the predicted dates reliable and not too far from the expected?
-  - Does it minimise errors compared to manual predictions?
 
 
 
@@ -134,9 +128,6 @@ Assuming resource is not a constraint, there will be a 12 weeks delivery timefra
 **Phase 1**
 
 - 2-3 weeks to generate the project proposal involving the Project Manager and Senior Data Scientist (myself). During this period, we will clearly frame the problem and define the goals.
-  - Identify and discuss with the stakeholders within the project. i.e.,  Junior Data Scientists, product team, field engineers, a representative of the 4 different regions to align to collect user stories.
-  - During this period,the data scientists, 1 part time and full time will research on how the work can be done and also how we can create a prototype solution.
-  - Project Kickoff workshop.
 - 2-4 weeks for data understanding, cleaning, exploration of data from all 4 different regions and establishing how to align them all.
 - 2-3 weeks for feature selection & engineering, modeling and model evaluation
 - 1 week for QA, bug-fixing
@@ -148,7 +139,7 @@ Assuming resource is not a constraint, there will be a 12 weeks delivery timefra
 **Phase 2**
 
 - 2 weeks for model deployment; looking at the pipeline and frequency of running the model
-- 6 weeks for model serving a frontend UI on GCP app engine using a rest endpoint
+- 6 weeks for model serving a frontend UI on GCP app engine using a rest endpoint and adding selected features to the product.
 - 2 weeks for model monitoring; How do you know that a feature you overlooked is doing better? The model pipeline will inform you if you need to retrain. Reproducibility and scalability so as to reproduce quickly and reduce latency.
 - Model maintenance is an ongoing process and will take up to 2 weeks to set up notifications that will prompt actions to be taken where new features are available to retrain the model. Here, we answer questions pertaining to the longevity of the model.
 
@@ -167,9 +158,10 @@ Feature prioritisation starts with a shared vision and with collaborative leader
 
 #### How will you keep stakeholders informed?
 
-- Weekly Sprints involving a technical/non-technical, low-level/high level presentations (dependent on the stakeholders present at the sprint) to showcase findings.
+- Weekly Sprints involving a technical/non-technical, low-level/high level presentations
 - Emails, Confluence for sharing documents with stakeholders and collaborative purposes.
 - Internally, the technical team will have Jira project monitoring board, Agile boards, RAG sheets to monitor project progress.
+
 
 
 
@@ -193,11 +185,17 @@ Covid data that helps us understand how covid might have affected delivery dates
 - Git (GitHub Actions)
 - GCP
 
-### Open Source Technologies
+### Open Source Technologies*
 
-Note that we will try and use containerised open source technologies as much as we can with a focus on test-driven deployment.
+Note that we will try and use containerised open source technologies as much as we can with a focus on test-driven deployment (TDD).
 
-- Python (poetry package, Makefile, pytest, Flask/Django)
+- Python (poetry package, Makefile, pytest)
+- FastAPI
+- Database: SQLite, PostgreSQL
+- Web development
+  - Flask (micro web framework), Django (full-stack)
+  - React, Angular, NodeJS
+  - CSS, HTML
 - Makefile
 - Docker
 - Terraform
