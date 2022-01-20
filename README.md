@@ -78,9 +78,9 @@ The delivery of this project has been split into 2 phases.
 
 #### Microservice architecture
 
-It is important to think of our products as customer-driven not data-driven because we are building products that are useful to the customers (focus is on customers) and not products that we can build from the data. A microservice-based framework is different from a monolithic architecture. One key merit is microservices are isolated but part of a bigger service, if one microservice breaks down it does not affect the other service. 
+It is important to think of our products as customer-driven not data-driven because we are building products that are useful to the customers (focus is on customers) and not products that we can build from the data. The model(s) will be served via microservices with a front-end hosted on GCP App Engine.
 
-With a REST APIs, the users of this product from different regions of Openreach can use this service with zero conflict. 
+With REST APIs, the users of this product from different regions of Openreach can use this service with zero conflict. 
 
 ![Microservice based framework, Phase 2](architecture/images/microservices.png)
 
@@ -129,8 +129,8 @@ Assuming resource is not a constraint, there will be a 12 weeks delivery timefra
 
 - 2-3 weeks to generate the project proposal involving the Project Manager and Senior Data Scientist (myself). During this period, we will clearly frame the problem and define the goals.
 - 2-4 weeks for data understanding, cleaning, exploration of data from all 4 different regions and establishing how to align them all.
-- 2-3 weeks for feature selection & engineering, modeling and model evaluation
-- 1 week for QA, bug-fixing
+- 2-3 weeks for model feature selection & engineering, model building and evaluation
+- 1 week for QA
 - 1 week to prepare to present to key stakeholders
 
 
@@ -138,10 +138,10 @@ Assuming resource is not a constraint, there will be a 12 weeks delivery timefra
 
 **Phase 2**
 
-- 2 weeks for model deployment; looking at the pipeline and frequency of running the model
-- 6 weeks for model serving a frontend UI on GCP app engine using a rest endpoint and adding selected features to the product.
-- 2 weeks for model monitoring; How do you know that a feature you overlooked is doing better? The model pipeline will inform you if you need to retrain. Reproducibility and scalability so as to reproduce quickly and reduce latency.
-- Model maintenance is an ongoing process and will take up to 2 weeks to set up notifications that will prompt actions to be taken where new features are available to retrain the model. Here, we answer questions pertaining to the longevity of the model.
+- 2 weeks for model deployment
+- 6 weeks for model serving
+- 2 weeks for model monitoring
+- 2 weeks for model maintenance
 
 #### How will you prioritise features?
 
@@ -185,7 +185,7 @@ Covid data that helps us understand how covid might have affected delivery dates
 - Git (GitHub Actions)
 - GCP
 
-### Open Source Technologies*
+### Open-Source Technologies*
 
 Note that we will try and use containerised open source technologies as much as we can with a focus on test-driven deployment (TDD).
 
